@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>/BAN掉敌对 - 官方网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+
+        body {
+            background-color: #0f141c;
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+
+        /* 导航栏 */
+        header {
+            background: rgba(15, 20, 28, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid #273444;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff4757;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ffffff;
+        }
+
+        .nav-menu a {
+            color: #ccc;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #ff4757;
+        }
+
+        /* 横幅区域 */
+        .banner {
+            height: 100vh;
+            background: linear-gradient(rgba(15, 20, 28, 0.7), rgba(15, 20, 28, 0.85)), url("https://picsum.photos/id/1/1920/1080") center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .banner h1 {
+            font-size: 60px;
+            color: #ff4757;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 71, 87, 0.5);
+        }
+
+        .banner p {
+            font-size: 20px;
+            color: #ddd;
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: #ff4757;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 18px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #e83e4d;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.3);
+        }
+
+        /* 通用区块样式 */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: #fff;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #ff4757;
+            margin: 15px auto;
+        }
+
+        /* 游戏介绍 */
+        .intro-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .intro-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .intro-text h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ff6b77;
+        }
+
+        .intro-text p {
+            font-size: 16px;
+            color: #c5c8cc;
+            margin-bottom: 15px;
+        }
+
+        .intro-img {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .intro-img img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+        }
+
+        /* 玩法特色 */
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: #1a222e;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #273444;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: #ff4757;
+        }
+
+        .feature-card h4 {
+            font-size: 20px;
+            color: #ff4757;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #b0b8c1;
+        }
+
+        /* 游戏截图 */
+        .screenshot-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .screenshot-item img:hover {
+            transform: scale(1.05);
+        }
+
+        /* 下载区域 */
+        .download-box {
+            background: #1a222e;
+            padding: 50px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #273444;
+        }
+
+        .download-box h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .download-desc {
+            color: #b0b8c1;
+            margin-bottom: 30px;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #ff4757;
+            color: #ff4757;
+        }
+
+        .btn-secondary:hover {
+            background: #ff4757;
+            color: #fff;
+        }
+
+        /* 页脚 */
+        footer {
+            background: #0a0e14;
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid #273444;
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            .banner h1 {
+                font-size: 36px;
+            }
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">/BAN<span>掉敌对</span></a>
+            <div class="nav-menu">
+                <a href="#home">首页</a>
+                <a href="#intro">纸牌介绍</a>
+                <a href="#feature">玩法特色</a>
+                <a href="#screen">卡牌展示</a>
+                <a href="#download">立即下载</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首页横幅 -->
+    <section class="banner" id="home">
+        <h1>/BAN掉敌对</h1>
+        <p>MC生物主题趣味纸牌，运用卡牌技能封印对手，策略卡牌对战欢乐十足！</p>
+        <a href="#download" class="btn">立即体验</a>
+    </section>
+
+    <!-- 纸牌介绍 -->
+    <section class="section" id="intro">
+        <h2 class="section-title">纸牌介绍</h2>
+        <div class="intro-content">
+            <div class="intro-text">
+                <h3>关于 /BAN掉敌对</h3>
+                <p>《/BAN掉敌对》是一款以我的世界（MC）各类生物为主题的实体纸牌游戏，并非电子游戏。</p>
+                <p>整套纸牌收录了海量MC经典生物，每张卡牌都附带专属技能，对战中依靠卡牌技能限制、封印对手卡牌。</p>
+                <p>支持多人面对面游玩，规则简单易懂，策略性十足，适合朋友、家人一同休闲玩乐。</p>
+            </div>
+            <div class="intro-img">
+                <img src="https://picsum.photos/id/2/600/400" alt="纸牌实拍">
+            </div>
+        </div>
+    </section>
+
+    <!-- 玩法特色 -->
+    <section class="section" id="feature" style="background: #121923;">
+        <h2 class="section-title">玩法特色</h2>
+        <div class="feature-list">
+            <div class="feature-card">
+                <h4>上手简单</h4>
+                <p>规则通俗易懂，出牌释放卡牌技能，零基础也能快速开启对局。</p>
+            </div>
+            <div class="feature-card">
+                <h4>策略对战</h4>
+                <p>搭配不同MC生物卡牌与技能，合理出牌，巧用技能封印对手。</p>
+            </div>
+            <div class="feature-card">
+                <h4>多人同乐</h4>
+                <p>支持多人线下围坐游玩，好友聚会、休闲消遣首选趣味纸牌。</p>
+            </div>
+            <div class="feature-card">
+                <h4>丰富卡牌</h4>
+                <p>收录超多我的世界经典生物，每张卡牌拥有独特专属技能。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 卡牌展示 -->
+    <section class="section" id="screen">
+        <h2 class="section-title">卡牌展示</h2>
+        <div class="screenshot-list">
+            <div class="screenshot-item">
+                <img src="https://picsum.photos/id/3/500/300" alt="生物卡牌">
+            </div>
+            <div class="screenshot-item">
+                <img src="https://picsum.photos/id/4/500/300" alt="技能卡牌">
+            </div>
+            <div class="screenshot-item">
+                <img src="https://picsum.photos/id/5/500/300" alt="整套纸牌">
+            </div>
+            <div class="screenshot-item">
+                <img src="https://picsum.photos/id/6/500/300" alt="对局场景">
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区域 -->
+    <section class="section" id="download" style="background: #121923;">
+        <div class="download-box">
+            <h3>立即下载 /BAN掉敌对</h3>
+            <p class="download-desc">获取纸牌规则手册、卡牌图鉴与玩法教程，免费下载查阅！</p>
+            <div class="download-buttons">
+                <a href="#" class="btn">规则手册下载</a>
+                <a href="#" class="btn btn-secondary">卡牌图鉴下载</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2026 /BAN掉敌对 官方网站  原创纸牌 保留所有权利</p>
+        <p style="margin-top: 10px;">联系我们 | 纸牌公告 | 隐私政策</p>
+    </footer>
+
+    <!-- 简单平滑滚动JS -->
+    <script>
+        // 锚点平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
