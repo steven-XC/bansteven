@@ -214,6 +214,56 @@
             transform: scale(1.05);
         }
 
+        /* 版本更新样式 */
+        .update-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .update-item {
+            background: #1a222e;
+            border-left: 4px solid #ff4757;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            transition: all 0.3s;
+        }
+
+        .update-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .update-version {
+            font-size: 20px;
+            color: #ff4757;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .update-date {
+            font-size: 14px;
+            color: #888;
+            font-weight: normal;
+        }
+
+        .update-content {
+            color: #b0b8c1;
+            line-height: 1.8;
+        }
+
+        .update-content ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .update-content li {
+            margin-bottom: 8px;
+        }
+
         /* 下载区域 */
         .download-box {
             background: #1a222e;
@@ -273,6 +323,14 @@
             .section-title {
                 font-size: 28px;
             }
+            .update-version {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            .update-item {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -286,6 +344,7 @@
                 <a href="#intro">纸牌介绍</a>
                 <a href="#feature">玩法特色</a>
                 <a href="#screen">卡牌展示</a>
+                <a href="#update">版本更新</a> <!-- 新增导航项 -->
                 <a href="#download">立即下载</a>
             </div>
         </div>
@@ -352,6 +411,55 @@
             </div>
             <div class="screenshot-item">
                 <img src="https://picsum.photos/id/6/500/300" alt="对局场景">
+            </div>
+        </div>
+    </section>
+
+    <!-- 版本更新区域 - 新增 -->
+    <section class="section" id="update" style="background: #0f141c;">
+        <h2 class="section-title">版本更新</h2>
+        <div class="update-list">
+            <div class="update-item">
+                <div class="update-version">
+                    v2.1.0 <span class="update-date">2026-01-15</span>
+                </div>
+                <div class="update-content">
+                    <p>主要更新内容：</p>
+                    <ul>
+                        <li>新增10种MC稀有生物卡牌（幻翼、循声守卫、悦灵等）</li>
+                        <li>优化部分卡牌技能平衡性，调整末影龙卡牌强度</li>
+                        <li>新增2人对战速战模式规则</li>
+                        <li>修复卡牌描述中的文字错误</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="update-item">
+                <div class="update-version">
+                    v2.0.0 <span class="update-date">2025-12-01</span>
+                </div>
+                <div class="update-content">
+                    <p>主要更新内容：</p>
+                    <ul>
+                        <li>全新卡牌设计风格，提升视觉体验</li>
+                        <li>新增多人对战模式（3-4人）规则</li>
+                        <li>添加5种特殊道具卡牌</li>
+                        <li>完善规则手册，补充详细玩法示例</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="update-item">
+                <div class="update-version">
+                    v1.0.0 <span class="update-date">2025-10-01</span>
+                </div>
+                <div class="update-content">
+                    <p>主要更新内容：</p>
+                    <ul>
+                        <li>正式发布《/BAN掉敌对》基础版本</li>
+                        <li>包含50种基础MC生物卡牌</li>
+                        <li>完善核心对战规则</li>
+                        <li>提供基础规则手册和卡牌图鉴</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
